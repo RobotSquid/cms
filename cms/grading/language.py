@@ -98,6 +98,11 @@ class Language(metaclass=ABCMeta):
         return self.object_extensions[0] \
             if len(self.object_extensions) > 0 else None
 
+    @property
+    def time_multiplier(self):
+        """Default time multiplier for the language."""
+        return 1
+
     @abstractmethod
     def get_compilation_commands(self,
                                  source_filenames, executable_filename,
