@@ -9,7 +9,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Contest Management System 1.5.dev0\n"
 "Report-Msgid-Bugs-To: contestms@googlegroups.com\n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2019-08-16 23:27+0000\n"
+=======
+"POT-Creation-Date: 2019-02-23 11:44+0100\n"
+>>>>>>> upstream/master
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -495,6 +499,7 @@ msgstr ""
 msgid "Register"
 msgstr ""
 
+<<<<<<< HEAD
 msgid ""
 "Registration is disabled for this contest. Please contact the administrators"
 " if you should take part but do not know your login details"
@@ -503,6 +508,8 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
+=======
+>>>>>>> upstream/master
 msgid "New message"
 msgstr ""
 
@@ -1033,6 +1040,54 @@ msgid "no print jobs yet"
 msgstr ""
 
 msgid "The passwords do not match!"
+<<<<<<< HEAD
+=======
+msgstr ""
+
+msgid "This username is already taken, please choose a different one."
+msgstr ""
+
+msgid "New user"
+msgstr ""
+
+msgid "Please fill in the fields to register"
+msgstr ""
+
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
+
+msgid "E-mail"
+msgstr ""
+
+msgid "Representing"
+msgstr ""
+
+#, python-format
+msgid "Must be one character or more."
+msgid_plural "Must be %(min_length)s characters or more."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Confirm password"
+msgstr ""
+
+msgid "The user was created successfully!"
+msgstr ""
+
+msgid "Your username is:"
+msgstr ""
+
+msgid "The password you chose was stored securely."
+msgstr ""
+
+msgid "Back to login"
+msgstr ""
+
+msgid "Compilation output"
+>>>>>>> upstream/master
 msgstr ""
 
 msgid "This username is already taken, please choose a different one."
@@ -1099,6 +1154,21 @@ msgid "Standard output"
 msgstr ""
 
 msgid "Standard error"
+msgstr ""
+
+msgid "Public score"
+msgstr ""
+
+msgid "Total score"
+msgstr ""
+
+msgid "Score"
+msgstr ""
+
+msgid "Token"
+msgstr ""
+
+msgid "no submissions"
 msgstr ""
 
 #, python-format
