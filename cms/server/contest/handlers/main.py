@@ -31,12 +31,13 @@ import ipaddress
 import json
 import logging
 import re
+import datetime
 
 import tornado.web
 from sqlalchemy.orm.exc import NoResultFound
 
 from cms import config
-from cms.db import PrintJob, User, Participation, Team
+from cms.db import PrintJob, User, Participation, Team, Contest
 from cms.grading.steps import COMPILATION_MESSAGES, EVALUATION_MESSAGES
 from cms.server import multi_contest
 from cms.server.contest.authentication import validate_login
@@ -66,6 +67,48 @@ class MainHandler(ContestHandler):
         self.render("overview.html", **self.r_params)
 
 
+class PasswordHandler(ContestHandler):
+    """Password handler.
+
+    Used to reset forgotten passwords.  Only keeps a log of resets requested.
+    No automation is done (for now).
+    """
+
+    @multi_contest
+    def post(self):
+        try:
+            username = self.get_argument("username")
+            email = self.get_argument("email")
+
+            if not 1 <= len(username):
+                raise ValueError()
+            if not 1 <= len(email):
+                raise ValueError()
+        except (tornado.web.MissingArgumentError, ValueError):
+            raise tornado.web.HTTPError(400)
+              
+        # Check that the username exists
+        tot_users = self.sql_session.query(User)\
+                        .filter(User.username == username).count()
+        if tot_users == 0:
+            # HTTP 409: Conflict
+            raise tornado.web.HTTPError(409)
+
+        # Make log to reset password
+        if (email != None) and (len(email) > 0):
+            f = open('/home/ubuntu/logs/TODO_logs', 'a')
+            l = str(datetime.datetime.now())
+            l += " ADD PASSWORD RESET REQUEST "
+            l += " Username: " +  username
+            l += " Email: " + email
+            f.write(l+'\n')
+            f.close()
+
+    @multi_contest
+    def get(self):
+        self.render("password.html", **self.r_params)
+     
+
 class RegistrationHandler(ContestHandler):
     """Registration handler.
 
@@ -86,6 +129,9 @@ class RegistrationHandler(ContestHandler):
             last_name = self.get_argument("last_name")
             username = self.get_argument("username")
             password = self.get_argument("password")
+            email = self.get_argument("email")
+            if len(email) == 0:
+                email = None
 
             if not 1 <= len(first_name) <= self.MAX_INPUT_LENGTH:
                 raise ValueError()
@@ -108,6 +154,8 @@ class RegistrationHandler(ContestHandler):
         if self.sql_session.query(Team).count() > 0:
             try:
                 team_code = self.get_argument("team")
+                school = self.get_argument("school")
+
                 team = self.sql_session.query(Team)\
                            .filter(Team.code == team_code)\
                            .one()
@@ -115,6 +163,7 @@ class RegistrationHandler(ContestHandler):
                 raise tornado.web.HTTPError(400)
         else:
             team = None
+            school = None
 
         # Check if the username is available
         tot_users = self.sql_session.query(User)\
@@ -122,18 +171,46 @@ class RegistrationHandler(ContestHandler):
         if tot_users != 0:
             # HTTP 409: Conflict
             raise tornado.web.HTTPError(409)
-
+	
         # Store new user and participation
-        user = User(first_name, last_name, username, password)
+        user = User(first_name, last_name, username, password, email=email)
         self.sql_session.add(user)
+	
+#        # Get contest IDs of all contests which are public
+#        f = open('/home/ubuntu/public_contests')
+#        public_contests = set()
+#        for line in f:
+#            digit_contain = False
+#            if (line[0] == '#'):
+#                continue
+#            for c in line:
+#                if (48 <= ord(c)) and (ord(c) <= 57):
+#                    digit_contain = True
+#                    break
+#            if digit_contain:
+#                public_contests.add(int(line.strip()))
+#        f.close()
 
-        participation = Participation(user=user, contest=self.contest,
-                                      team=team)
-        self.sql_session.add(participation)
+        # Add participation to all public contests
+        for contest in self.sql_session.query(Contest):
+#            if (contest.id in public_contests):
+            if (contest.allow_registration):
+                self.sql_session.add(Participation(user=user, contest=contest, team=team))
+
+        # Make log to add additional school
+        if (school != None) and (len(school) > 0):
+            f = open('/home/ubuntu/logs/TODO_logs', 'a')
+            l = str(datetime.datetime.now())
+            l += " ADD SCHOOL REQUEST "
+            l += " Username: " +  username
+            l += " School: " + school
+            f.write(l+'\n')
+            f.close()
 
         self.sql_session.commit()
-
+	
         self.finish(username)
+
 
     @multi_contest
     def get(self):
@@ -316,3 +393,12 @@ class DocumentationHandler(ContestHandler):
                     COMPILATION_MESSAGES=COMPILATION_MESSAGES,
                     EVALUATION_MESSAGES=EVALUATION_MESSAGES,
                     **self.r_params)
+
+
+class InstructionsHandler(ContestHandler):
+    """Displays the instructions, contest rules, etc."""
+
+    @tornado.web.authenticated
+    @multi_contest
+    def get(self):
+        self.render("instructions.html", **self.r_params)

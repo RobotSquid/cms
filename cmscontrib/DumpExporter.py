@@ -203,6 +203,7 @@ class DumpExporter:
             logger.info("Exporting files.")
             if self.dump_files:
                 for contest_id in self.contests_ids:
+                    print("CONTEST ID:", contest_id)
                     contest = Contest.get_from_id(contest_id, session)
                     files = enumerate_files(
                         session, contest,
@@ -211,12 +212,14 @@ class DumpExporter:
                         skip_print_jobs=self.skip_print_jobs,
                         skip_generated=self.skip_generated)
                     for file_ in files:
-                        if not self.safe_get_file(file_,
-                                                  os.path.join(files_dir,
-                                                               file_),
-                                                  os.path.join(descr_dir,
-                                                               file_)):
-                            return False
+                        #print("FILE ID:", file_)
+                        if (file_ != None):
+                            if not self.safe_get_file(file_,
+                                                      os.path.join(files_dir,
+                                                                   file_),
+                                                      os.path.join(descr_dir,
+                                                                   file_)):
+                                return False
 
             # Export data in JSON format.
             if self.dump_model:

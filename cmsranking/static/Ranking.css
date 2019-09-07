@@ -318,7 +318,7 @@ abbr {
     float: left;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    width: 25%;
+    width: 33.33%;
     height: 3em;
     padding: 0;
     border: 0 solid white;
@@ -419,11 +419,9 @@ abbr {
 }
 
 #Scoreboard_body tr td.team img {
-    display: block;
-    max-width: 40px;
-    max-height: 20px;
+    max-width: 50px;
+    max-height: 35px;
     margin: 0 auto;
-    box-shadow: 0 0 2px 0 gray;
 }
 
 #Scoreboard_head tr th,
@@ -949,8 +947,10 @@ abbr {
 }
 
 #UserDetail_flag {
+    max-width: 300px;
+    max-height: 100px;
     margin: -1px;
-    border: 1px solid gray;
+    border: 0px solid gray;
 }
 
 #UserDetail_flag.hidden {

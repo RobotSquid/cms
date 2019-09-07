@@ -165,7 +165,7 @@ var UserDetail = new function () {
             }
 
             var s = "<tr class=\"global\"> \
-                        <td class=\"name\">Global</td> \
+                        <td class=\"name\">Total</td> \
                         <td class=\"score\">" + (self.global_s.length > 0 ? round_to_str(self.global_s[self.global_s.length-1][1], DataStore.global_score_precision) : 0) + "</td> \
                         <td class=\"rank\">" + (self.global_r.length > 0 ? self.global_r[self.global_r.length-1][1] : 1) + "</td> \
                         <td class=\"btn\"><a>Show</a></td> \
@@ -175,13 +175,6 @@ var UserDetail = new function () {
             for (var i in contests) {
                 var contest = contests[i];
                 var c_id = contest["key"];
-
-                s += "<tr class=\"contest\" data-contest=\"" + c_id +"\"> \
-                         <td class=\"name\">" + contest['name'] + "</td> \
-                         <td class=\"score\">" + (self.contest_s[c_id].length > 0 ? round_to_str(self.contest_s[c_id][self.contest_s[c_id].length-1][1], contest["score_precision"]) : 0) + "</td> \
-                         <td class=\"rank\">" + (self.contest_r[c_id].length > 0 ? self.contest_r[c_id][self.contest_r[c_id].length-1][1] : 1) + "</td> \
-                         <td class=\"btn\"><a>Show</a></td> \
-                      </tr>"
 
                 var tasks = contest["tasks"];
                 for (var j in tasks) {
@@ -208,7 +201,7 @@ var UserDetail = new function () {
     };
 
     self.show_global = function () {
-        self.title_label.text("Global");
+        self.title_label.text("Total");
         self.submission_table.html("");
 
         var intervals = new Array();

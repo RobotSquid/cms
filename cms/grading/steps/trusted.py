@@ -98,6 +98,7 @@ def extract_outcome_and_text(sandbox):
     with sandbox.get_file_text(sandbox.stderr_file) as stderr_file:
         try:
             text = _filter_ansi_escape(stderr_file.readline().strip())
+            text = text.replace("\x00", "\uFFFD")
         except UnicodeDecodeError as error:
             logger.error("Manager stderr (text) is not valid UTF-8. %r", error)
             raise ValueError("Cannot decode the text.")
@@ -146,6 +147,8 @@ def trusted_step(sandbox, commands):
     sandbox.timeout = config.trusted_sandbox_max_time_s
     sandbox.wallclock_timeout = 2 * sandbox.timeout + 1
     sandbox.address_space = config.trusted_sandbox_max_memory_kib * 1024
+
+    sandbox.maybe_add_mapped_directory("/home/ubuntu/scratch_sandbox")
 
     # Run the trusted commands.
     stats = generic_step(sandbox, commands, "trusted")

@@ -30,10 +30,12 @@ from .main import \
     LoginHandler, \
     LogoutHandler, \
     RegistrationHandler, \
+    PasswordHandler, \
     StartHandler, \
     NotificationsHandler, \
     PrintingHandler, \
-    DocumentationHandler
+    DocumentationHandler, \
+    InstructionsHandler
 from .task import \
     TaskDescriptionHandler, \
     TaskStatementViewHandler, \
@@ -61,10 +63,12 @@ HANDLERS = [
     (r"/login", LoginHandler),
     (r"/logout", LogoutHandler),
     (r"/register", RegistrationHandler),
+    (r"/password", PasswordHandler),
     (r"/start", StartHandler),
     (r"/notifications", NotificationsHandler),
     (r"/printing", PrintingHandler),
     (r"/documentation", DocumentationHandler),
+    (r"/instructions", InstructionsHandler),
 
     # Tasks
 

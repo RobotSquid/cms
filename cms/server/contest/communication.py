@@ -28,6 +28,7 @@
 """
 
 import logging
+import datetime
 
 from cms.db import Question, Announcement, Message
 from cmscommon.datetime import make_timestamp
@@ -99,6 +100,17 @@ def accept_question(sql_session, participation, timestamp, subject, text):
     sql_session.add(question)
 
     logger.info("Question submitted by user %s.", participation.user.username)
+
+    # Make manual log of question
+    f = open('/home/ubuntu/logs/questions', 'a')
+    l = str(datetime.datetime.now())
+    l += " NEW QUESTION "
+    l += " Contest: " + participation.contest.name
+    l += " Username: " +  participation.user.username
+    l += " Subject: " + subject
+    f.write(l+'\n')
+    f.close()
+
 
     return question
 

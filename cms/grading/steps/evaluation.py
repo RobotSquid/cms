@@ -196,9 +196,11 @@ def evaluation_step_before_run(sandbox, command,
     sandbox.stdout_file = stdout_redirect
     sandbox.stderr_file = "stderr.txt"
 
+    sandbox.maybe_add_mapped_directory("/home/ubuntu/scratch_sandbox")
+
     for src, (dest, options) in dirs_map.items():
         sandbox.add_mapped_directory(src, dest=dest, options=options)
-    for name in [sandbox.stderr_file, sandbox.stdout_file]:
+    for name in [sandbox.stderr_file, sandbox.stdout_file, "log.txt"]:
         if name is not None:
             writable_files.append(name)
     sandbox.allow_writing_only(writable_files)

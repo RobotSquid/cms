@@ -32,8 +32,8 @@ var utils = new CMS.CWSUtils("{{ url() }}", "{{ contest_url() }}", "{{ contest.n
                              {{ actual_phase }});
 $(document).ready(function () {
     utils.update_time({% if contest.per_user_time is not none %}true{% else %}false{% endif %});
-    setInterval(function() {
-        utils.update_time({% if contest.per_user_time is not none %}true{% else %}false{% endif %});
+    var timer = setInterval(function() {
+        utils.update_time({% if contest.per_user_time is not none %}true{% else %}false{% endif %}, timer);
     }, 1000);
     utils.update_unread_count(0{% if page == "communication" %}, 0{% endif %});
     utils.update_notifications(true);
@@ -90,6 +90,11 @@ $(document).ready(function () {
             <div class="login_box hero-unit">
                 <h1>{% trans %}Welcome{% endtrans %}</h1>
                 <p>{% trans %}Please log in{% endtrans %}</p>
+		{% if contest.allow_registration %}
+		<p style="margin: 0 0 9px 0;">
+		    {% trans %}If you have previously registered for a contest, your account is valid for this contest as well{% endtrans %}
+		</p>
+		{% endif %}
                 <form class="form-horizontal" action="{{ contest_url("login") }}" method="POST">
                     {{ xsrf_form_html|safe }}
                     {% set next_page = handler.get_argument("next", none) %}
@@ -107,6 +112,9 @@ $(document).ready(function () {
                             <label class="control-label" for="password">{% trans %}Password{% endtrans %}</label>
                             <div class="controls">
                                 <input type="password" class="input-xlarge" name="password" id="password">
+                                {% if contest.allow_registration %}
+                                <a href="{{ contest_url('password') }}"><div style="margin: 9px 0 0;">{% trans %}Forgot password?{% endtrans %}</div></a>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="control-group">
@@ -121,6 +129,10 @@ $(document).ready(function () {
                 <p style="margin: 9px 0 0;">
                     {% trans %}Don't have an account?{% endtrans %} <a href="{{ contest_url('register') }}">{% trans %}Register{% endtrans %}</a>
                 </p>
+		{% else %}
+		<p style="margin: 9px 0 0;">
+		    {% trans %}Registration is disabled for this contest. Please contact the administrators if you should take part but do not know your login details{% endtrans %}: <a href="mailto:admin@saco-evaluator.org.za">{% trans %}E-mail{% endtrans %}</a>
+		</p>
                 {% endif %}
             </div>
         </div>
@@ -172,6 +184,11 @@ $(document).ready(function () {
                             <li{% if page == "overview" %} class="active"{% endif %}>
                                 <a href="{{ contest_url() }}">{% trans %}Overview{% endtrans %}</a>
                             </li>
+        {% if contest.name == "sapo2019round2" %}
+                            <li{% if page == "instructions" %} class="active"{% endif %}>
+                                <a href="{{ contest_url("instructions") }}">{% trans %}Rules & Instructions{% endtrans %}</a>
+                            </li>
+        {% endif %}
                             <li{% if page == "communication" %} class="active"{% endif %}>
                                 <a href="{{ contest_url("communication") }}">{% trans %}Communication{% endtrans %}
                                     <span id="unread_count" class="label label-warning no_unread"></span>
@@ -212,7 +229,20 @@ $(document).ready(function () {
                     <a href="https://github.com/cms-dev/cms" rel="author noreferrer" target="_blank">{% trans %}Contest Management System{% endtrans %}</a>
                     {% trans %}is released under the{% endtrans %}
                     <a href="https://www.gnu.org/licenses/agpl" rel="license noreferrer" target="_blank">{% trans %}GNU Affero General Public License{% endtrans %}</a>.
-                    </span>
+
+                    <br><br>
+                    Sponsored by
+                    <table>
+                        <tr>
+                        <td style="width:50%; text-align:center; padding:15px"><img src="/sponsors/oracle.jpg" alt="Oracle Academy"></td>
+                        <td colspan="2" style="width:50%; text-align:center; padding:15px"><img src="/sponsors/iitpsa.jpg" alt="IITPSA"></td>
+                        </tr>
+                        <td colspan="2" style="width:70%; text-align:left; padding:15px"><img src="/sponsors/standardbank.jpg" alt="Standard Bank">&emsp;&emsp;</td>
+                        <td style="width:30%; text-align:center; padding:15px"><img src="/sponsors/uct.jpg" alt="UCT"></td>
+                        <tr>
+                        </tr>
+                    </table>
+                    </span>                    
                 </div>
     {% block core %}{% endblock core %}
             </div>

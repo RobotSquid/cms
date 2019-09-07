@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 {% block title %}
-    {% trans %}Choose a contest{% endtrans %}
+    {% trans %}SACO{% endtrans %} {% trans %}Evaluator{% endtrans %}
 {% endblock title %}
 {% block body %}
     <div class="hero-unit contest-list">
+        <h2 style="margin: 0px 0 15px;">{% trans %}SAPO{% endtrans %} {% trans %}Contest Server{% endtrans %}</h2>
+
         <h3>{% trans %}Choose a contest{% endtrans %}</h3>
+        <br />
         <ul class="nav nav-list">
-    {% for c_name, c_iter in contest_list|dictsort(by="key") %}
+    {% for c_name, c_iter in contest_list|dictsort(by="key")|reverse %}
             <li>
-                <a {% if c_iter.stop < now %} style="color: #adadad" {% endif %} href="{{ url(c_iter.name) }}">{{ c_iter.description }}</a>
+                <a href="{{ url(c_iter.name) }}">{{ c_iter.description }}</a>
             </li>
     {% endfor %}
         </ul>

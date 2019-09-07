@@ -9,6 +9,9 @@
     <h1>{% trans %}Documentation{% endtrans %}</h1>
 </div>
 
+<h4>{% trans %}Click{% endtrans %} <a href="/docs/cmsmanual.pdf">{% trans %}here{% endtrans %}</a> {% trans %}to view documentation on how to use the evaluator.{% endtrans %} 
+{% trans %}Alternatively, you can also watch a tutorial video{% endtrans %} <a href="https://youtu.be/YyXvIw9fXgA">{% trans %}here{% endtrans %}</a>.</h4>
+
 <h2>{% trans %}Programming languages and libraries{% endtrans %}</h2>
 
 {% if contest.languages|map("to_language")|map(attribute="source_extensions")|any("contains", ".cpp") %}
@@ -21,6 +24,29 @@
 <h3>Java</h3>
 
 <p>{% trans %}The main Java class of the solution should have exactly the same name as the task.{% endtrans %}</p>
+
+<p><a href="/docs/java-sdk-docs-11/">{% trans %}Java Documentation{% endtrans %}</a></p>
+{% endif %}
+
+{% if contest.languages|map("to_language")|map(attribute="source_extensions")|any("contains", ".py") %}
+<h3>Python</h3>
+
+<p><a href="/docs/python-docs-2.7/">{% trans %}Python 2 Documentation{% endtrans %}</a></p>
+
+<p><a href="/docs/python-docs-3.7/">{% trans %}Python 3 Documentation{% endtrans %}</a></p>
+{% endif %}
+
+{% if contest.languages|map("to_language")|map(attribute="source_extensions")|any("contains", ".pas") %}
+<h3>Pascal</h3>
+
+<p><a href="/docs/fpc/fpctoc.html">{% trans %}Pascal Documentation{% endtrans %}</a></p>
+
+<h3>Delphi</h3>
+
+<p>{% trans %}Delphi is simply a commercial implementation of Pascal, so if you're familiar with Delphi, then you can submit your solutions in Pascal{% endtrans %} 
+({% trans %}be sure to use the .pas template file provided on the "Statement" page to handle input/output{% endtrans %}).</p>
+
+
 {% endif %}
 
 
