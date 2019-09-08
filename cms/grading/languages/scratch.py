@@ -21,6 +21,10 @@ class Scratch(Language):
         """See Language.source_extensions."""
         return [".sb3", ".sb2", ".sb"]
 
+    @property
+    def time_multiplier(self):
+        return 100
+
     def get_compilation_commands(self,
                                  source_filenames, executable_filename,
                                  for_evaluation=True):
