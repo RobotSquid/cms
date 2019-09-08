@@ -515,6 +515,7 @@ class EvaluationJob(Job):
         submission_result = submission.get_result(dataset)
         # This should have been created by now.
         assert submission_result is not None
+        language = get_language(submission.language)
 
         testcase = dataset.testcases[operation.testcase_codename]
 
@@ -534,7 +535,7 @@ class EvaluationJob(Job):
             executables=dict(submission_result.executables),
             input=testcase.input,
             output=testcase.output,
-            time_limit=dataset.time_limit,
+            time_limit=dataset.time_limit*language.time_multiplier,
             memory_limit=dataset.memory_limit,
             info=info
         )
@@ -613,7 +614,7 @@ class EvaluationJob(Job):
             managers=managers,
             executables=dict(user_test_result.executables),
             input=user_test.input,
-            time_limit=dataset.time_limit,
+            time_limit=dataset.time_limit*language.time_multiplier,
             memory_limit=dataset.memory_limit,
             info="evaluate user test %d" % (user_test.id),
             get_output=True,
