@@ -52,6 +52,11 @@ class JavaJDK(Language):
         """See Language.requires_multithreading."""
         return True
 
+    @property
+    def time_multiplier(self):
+        """Default time multiplier for the language."""
+        return 2
+
     def get_compilation_commands(self,
                                  source_filenames, executable_filename,
                                  for_evaluation=True):
