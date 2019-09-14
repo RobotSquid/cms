@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-"""C++ programming language definition."""
+"""C++11 programming language definition."""
 
 from cms.grading import CompiledLanguage
 
