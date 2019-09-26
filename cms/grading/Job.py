@@ -515,7 +515,10 @@ class EvaluationJob(Job):
         submission_result = submission.get_result(dataset)
         # This should have been created by now.
         assert submission_result is not None
-        language = get_language(submission.language)
+        try:
+            language = get_language(submission.language)
+        except KeyError:
+            language = None
 
         testcase = dataset.testcases[operation.testcase_codename]
 
@@ -535,7 +538,7 @@ class EvaluationJob(Job):
             executables=dict(submission_result.executables),
             input=testcase.input,
             output=testcase.output,
-            time_limit=dataset.time_limit*language.time_multiplier,
+            time_limit=dataset.time_limit*(language.time_multiplier if language is not None else 1),
             memory_limit=dataset.memory_limit,
             info=info
         )
@@ -588,7 +591,10 @@ class EvaluationJob(Job):
         # Add the managers to be got from the Task.
         # dict() is required to detach the dictionary that gets added
         # to the Job from the control of SQLAlchemy
-        language = get_language(user_test.language)
+        try:
+            language = get_language(submission.language)
+        except KeyError:
+            language = None
         managers = dict(user_test.managers)
         task_type = dataset.task_type_object
         auto_managers = task_type.get_auto_managers()
@@ -614,7 +620,7 @@ class EvaluationJob(Job):
             managers=managers,
             executables=dict(user_test_result.executables),
             input=user_test.input,
-            time_limit=dataset.time_limit*language.time_multiplier,
+            time_limit=dataset.time_limit*(language.time_multiplier if language is not None else 1),
             memory_limit=dataset.memory_limit,
             info="evaluate user test %d" % (user_test.id),
             get_output=True,
