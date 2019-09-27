@@ -592,7 +592,7 @@ class EvaluationJob(Job):
         # dict() is required to detach the dictionary that gets added
         # to the Job from the control of SQLAlchemy
         try:
-            language = get_language(submission.language)
+            language = get_language(user_test.language)
         except KeyError:
             language = None
         managers = dict(user_test.managers)
