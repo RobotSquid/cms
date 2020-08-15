@@ -1,0 +1,80 @@
+{% extends "contest.html" %}
+
+{% set page = "instructions" %}
+
+{% block core %}
+<div class="span9">
+
+<div class="page-header">
+    <h1>{% trans %}Rules & Instructions{% endtrans %}</h1>
+</div>
+
+<h2>{% trans %}Contest Rules{% endtrans %}</h2>
+
+<ol>
+  <li style="margin: 10px 0;">{% trans %}This contest is for ALL Round 2 candidates.{% endtrans %}</li>
+
+  <li style="margin: 10px 0;">{% trans %}There are 100 marks in total. The marks are allocated as follows: Question 1 is worth 15 marks, Question 2 is worth 22 marks, Question 3 is worth 28 marks, and Question 4 is worth 35 marks. The number of test
+cases for each question is hidden, although the marks for each test case will be evenly distributed across the mark allocation.{% endtrans %}</li>
+
+  <li style="margin: 10px 0;">{% trans %}You have two hours (120 minutes) to attempt as many questions as possible.{% endtrans %}</li>
+
+  <li style="margin: 10px 0;">{% trans %}You may assume that the user input will satisfy the problem specification and so you do not need to validate the input.{% endtrans %}</li>
+
+  <li style="margin: 10px 0;">{% trans %}You should not write code to produce only specific answers, as the judges will use other test cases.{% endtrans %}</li>
+
+  <li style="margin: 10px 0;">{% trans %} Any attempt to access any other website or source of information will disqualify you, with the exception of online compilers such as{% endtrans %} <a href="https://rextester.com/l/pascal_online_compiler" target="_blank">rextester</a>. {% trans %}For programming language documentation, refer to the {% endtrans %}
+ <a href="{{ contest_url("documentation") }}">{% trans %}Documentation{% endtrans %}</a> {% trans %}link given on the pane on the left-hand side.{% endtrans %}</li>
+
+  <li style="margin: 10px 0;">{% trans %}Any submissions on the evaluator should <b>NOT</b> attempt any of the following:{% endtrans %}
+  <ul>
+    <li>{% trans %}access the internal evaluation server network,{% endtrans %}</li>
+    <li>{% trans %}fork or execute external programs,{% endtrans %}</li>
+    <li>{% trans %}create or access files,{% endtrans %}</li>
+    <li>{% trans %}attack the system security or the grader,{% endtrans %}</li>
+    <li>{% trans %}change file system permissions, or{% endtrans %}</li>
+    <li>{% trans %}read file system information.{% endtrans %}</li>
+  </ul>
+  {% trans %}A competitor whose submissions attempt any of the above may be disqualified.{% endtrans %}
+  </li>
+
+  <li style="margin: 10px 0;">{% trans %}Do not communicate the task statements or nature of the problems with other students from different schools until after 6:30 PM on 21 August.{% endtrans %}</li>
+
+  <li style="margin: 10px 0;">{% trans %}Scores per question will be sent to your school after 21 August.  Scores will also be available on the online evaluator after 6:30 PM, once all submissions have been evaluated.{% endtrans %}</li>
+
+</ol>
+
+<h2>{% trans %}Instructions{% endtrans %}</h2>
+
+<ol>
+<li style="margin: 10px 0;">{% trans %}Verify that your full name give on the bar in the top right hand corner is correct.{% endtrans %} {% trans %}If there are errors, then{% endtrans %} <a href="{{ contest_url("communication") }}">{% trans %}submit a question{% endtrans %}</a> {% trans %}with the subject heading "<b>Full Name</b>", and in the body of the question, simply give your correct full name.{% endtrans %}</li>
+
+<li style="margin: 10px 0;">{% trans %}Once you are ready to begin the contest, click on "<b>Start</b>". This sets the clock (top left) running. The Second Round questions will appear on the pane on the left-hand side. {% endtrans %}</li>
+
+<li style="margin: 10px 0;">{% trans %}You will now have two hours (120 minutes) to complete all 4 questions.{% endtrans %}</li>
+
+<li style="margin: 10px 0;">{% trans %}Click on "Statement", underneath the first question you wish to answer. Click on either "Statement in <b>English</b>" or "Statement in <b>Afrikaans</b>", depending on which language you wish to use.{% endtrans %}</li>
+
+<li style="margin: 10px 0;">{% trans %}Using the template files, or otherwise, write a program to solve the problem. Cut and paste or type the program in the template provided for your language.{% endtrans %}</li>
+
+<li style="margin: 10px 0;">{% trans %}Click on "Submissions". Click "Choose File", and select the source code of your program you wish to submit.{% endtrans %}</li>
+
+<li style="margin: 10px 0;">{% trans %}Select the relevant programming language as shown below, and then click "Submit".{% endtrans %}</li>
+
+<li>{% trans %}You will only receive feedback for the example test cases given in the task statement (to ensure that the format of your output is correct). No feedback will be given for any further test cases. The evaluator will
+simply display your score as "N/A" for the duration of the contest.{% endtrans %}</li>
+
+<li style="margin: 10px 0;">{% trans %}For each question, your score will be the highest score obtained across all your submissions for that question. You will only be permitted to submit at most 25 submissions for each question.{% endtrans %}</li>
+
+<li style="margin: 10px 0;">{% trans %}You may use the{% endtrans %} <a href="{{ contest_url("communication") }}">{% trans %}Communication{% endtrans %}</a> {% trans %}(top of left pane) but note that responses may be delayed.{% endtrans %}</li>
+
+<li style="margin: 10px 0;">{% trans %}Select a new question from the list on the left.{% endtrans %}</li>
+
+<li style="margin: 10px 0;">{% trans %}Do not wait until the last few minutes to submit your programs.{% endtrans %}</li>
+
+<li style="margin: 10px 0;">{% trans %}After 120 minutes, or at 6:30 PM, whatever comes first, the server will end your participation. Should you finish before the time, check that you have answered all the questions.{% endtrans %}</li>
+
+</ol>
+
+</div>
+{% endblock core %}

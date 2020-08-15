@@ -768,10 +768,10 @@ msgstr "'n Mededinger wie se indienings enige van die bogenoemde probeer doen ma
 
 msgid ""
 "Do not communicate the task statements or nature of the problems with other "
-"students from different schools until after 6:30 PM on 19 August."
+"students from different schools until after 6:30 PM on 21 August."
 msgstr ""
 "Moet nie die taakstellings of aard van die probleme met enige studente van "
-"ander skole voor 6:30 PM 19 Augustus deel nie."
+"ander skole voor 6:30 PM 21 Augustus deel nie."
 
 msgid ""
 "Scores per question will be sent to your school after 21 August.  Scores "
@@ -841,10 +841,10 @@ msgstr ""
 "wat jy wil indien."
 
 msgid ""
-"Select the relevant programming language, and then click "
+"Select the relevant programming language as shown below, and then click "
 "\"Submit\"."
 msgstr ""
-"Kies die relevante programmeertaal, en klik dan \"Dien in\""
+"Kies die relevante programmeertaal soos onder gewys, en klik dan \"Dien in\""
 
 msgid ""
 "You will only receive feedback for the example test cases given in the task "
@@ -1417,65 +1417,3 @@ msgstr "Geen tekens"
 #~ msgid "South African Programming Olympiad"
 #~ msgstr "Suid-Afrikaanse Programmeerolimpiade"
 
-msgid "The contest will open at 6 AM Wednesday 19 August and will shutdown at 6 PM."
-msgstr "Die kompetisie open Woensdag 19 Augustus om 06:00 en sluit om 18:00."
-
-msgid "This paper is only for invited Round 2 candidates. They will see the questions and submit programs on the saco-evaluator."
-msgstr "Hierdie vraestel is slegs vir genooide Rondte 2 kandidate. Hulle sal die vrae sien en programme op die saco-evalueerder indien."
-
-msgid "Programs must pass the plagiarism check to be deemed valid."
-msgstr "Programme moet die plagiaatkontrole slaag om as geldig te wees."
-
-msgid "Log on using the username and password given to you by your teacher."
-msgstr "Teken aan met die gebruikersnaam en wagwoord wat jou onderwyser aan jou gegee het."
-
-msgid "There are four questions. There are 100 marks for each question. Each question is made up of subtasks. There are different marks for each subtask."
-msgstr "Daar is vier vrae en elke vraag het ‘n totaal van 100 punte. Elke vraag bestaan uit subtake. Daar is verskillende punte vir elke subtaak."
-
-msgid "For each subtask, your score will be the highest score obtained across all your submissions for that question."
-msgstr "Vir elke subtaak is jou telling die hoogste telling wat behaal is in al jou inhadigings vir daardie vraag."
-
-msgid "You will have two hours (120 minutes) to complete all 4 questions."
-msgstr "Jy het twee uur (120 minute) om al 4 vrae te beantwoord."
-
-msgid "You will only be permitted to submit at most 30 submissions for the 2 hours of the contest."
-msgstr "Jy mag ‘n maksimum van 30 inhandigings in die twee uur van die kompetisie indien."
-
-msgid "You may assume that the user input will satisfy the problem specification and so you do not need to validate the input."
-msgstr "Jy kan aanvaar dat die gebruiker se toevoer aan die probleem se spesifikasies sal voldoen en dat jy nie die toevoer hoef te valideer nie."
-
-msgid "You should not write code to produce only specific answers, as the judges will use other test cases."
-msgstr "U mag nie kode skryf om slegs spesifieke antwoorde te lewer nie, aangesien die beoordelaars van ander toetssake gebruik maak."
-
-msgid "Do not wait until the last few minutes to submit your programs."
-msgstr "Moenie wag tot die laaste paar minute om jou programme in te dien nie."
-
-msgid "After 120 minutes, or at 6:00 PM, whatever comes first, the server will end your participation. Should you finish before the time, check that you have answered all the questions."
-msgstr "Na 120 minute, of om 18:00, of wat ook al eerste kom, sal die bediener jou deelname beëindig. As jy voor die tyd klaar is, maak seker dat jy al die vrae beantwoord het."
-
-msgid "Scores per question will be sent to your school after 19 August."
-msgstr "Die punte per vraag sal na 19 Augustus na jou skool gestuur word."
-
-msgid "Delphi/Pascal users may want to use the int64 datatype for numbers, to ensure you do not get integer overflow (e.g. on the evaluator, the 'integer' datatype is 16-bit)."
-msgstr "TODO"
-
-msgid "Your program should not output anything other than the answer. E.g. if you are asked to read in two integers A and B and print out their sum, you must print out ONLY the value of A+B. If your program prints out anything else, such as 'Enter A and B:', you will get ZERO."
-msgstr "TODO"
-
-msgid "The 64-bit integer datatypes in each language (Python handles by default) are"
-msgstr "TODO"
-
-msgid "For more help, look at"
-msgstr "TODO"
-
-msgid "For more help, look at"
-msgstr "TODO"
-
-msgid "Python users should make sure to select the correct version of Python when submitting their solutions, as the automatic detector may choose the wrong version."
-msgstr "TODO"
-
-msgid "You may code your solutions in C++, Java, Python2, Python3 or Pascal/Delphi. The time multipliers are"
-msgstr "TODO"
-
-msgid "For example, if the time limit given is 1 second, a Java solution may run for up to 2 seconds."
-msgstr "TODO"
