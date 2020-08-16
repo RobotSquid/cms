@@ -1457,25 +1457,25 @@ msgid "Scores per question will be sent to your school after 19 August."
 msgstr "Die punte per vraag sal na 19 Augustus na jou skool gestuur word."
 
 msgid "Delphi/Pascal users may want to use the int64 datatype for numbers, to ensure you do not get integer overflow (e.g. on the evaluator, the 'integer' datatype is 16-bit)."
-msgstr "TODO"
+msgstr "Delphi/Pascal gebruikers mag dalk die int64 datatipe wil gebruik vir nommers, om seker te maak dat dat jy nie heelgetal-oorvloei kry nie (b.v. op die evalueerder is die 'integer'-datatipe 16-bit)."
 
 msgid "Your program should not output anything other than the answer. E.g. if you are asked to read in two integers A and B and print out their sum, you must print out ONLY the value of A+B. If your program prints out anything else, such as 'Enter A and B:', you will get ZERO."
-msgstr "TODO"
+msgstr "Jou program moet nie enige iets behalwe die antwoord uitvoer nie. B.v as jy gevra word om twee nommers A en B te lees en hul som uit te voer moet jy SLEGS die waarde van A+B uitvoer. As jou program enige iets anders uitvoer, soos 'Voer A en B in:', sal jy NUL kry."
 
 msgid "The 64-bit integer datatypes in each language (Python handles by default) are"
-msgstr "TODO"
+msgstr "Die 64-bit heelgetal datatipes in elke programmeertaal (Python het geen verandering nodig nie) is"
 
 msgid "For more help, look at"
-msgstr "TODO"
+msgstr "Vir meer hulp, kyk na"
 
 msgid "For more help, look at"
-msgstr "TODO"
+msgstr "Vir meer hulp, kyk na"
 
 msgid "Python users should make sure to select the correct version of Python when submitting their solutions, as the automatic detector may choose the wrong version."
-msgstr "TODO"
+msgstr "Python gebruikers moet seker maak om die regte weergawe van Python te kies wanneer hulle oplossings inhanding, aangesien die outomatiese proses die verkeerde weergawe mag kies."
 
 msgid "You may code your solutions in C++, Java, Python2, Python3 or Pascal/Delphi. The time multipliers are"
-msgstr "TODO"
+msgstr "Jy mag jou oplossings programmeer in C++, Java, Python2, Python3 of Pascal/Delphi. Die tydvermenigvuldigers is"
 
 msgid "For example, if the time limit given is 1 second, a Java solution may run for up to 2 seconds."
-msgstr "TODO"
+msgstr "Byvoorbeeld, as die tydlimit gegee word as 1 sekonde, mag 'n Java oplossing tot 2 sekondes vat om te evalueer."

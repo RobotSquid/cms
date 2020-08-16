@@ -346,11 +346,13 @@ CMS.CWSUtils.filter_languages = function(options, inputs) {
     // Find all languages that should be enabled.
     var enabled = {};
     var anyEnabled = false;
+    var nEnabled = 0;
     for (var lang in LANGUAGES) {
         for (i = 0; i < exts.length; i++) {
             if (LANGUAGES[lang][exts[i]]) {
                 enabled[lang] = true;
                 anyEnabled = true;
+                nEnabled += 1;
                 break;
             }
         }
@@ -374,12 +376,17 @@ CMS.CWSUtils.filter_languages = function(options, inputs) {
             }
         }
     });
+    var isPython = exts.includes(".py");
     // Else, if the current selected is disabled, select one that is enabled.
     if (isSelectedDisabled) {
         for (i = 0; i < options.length; i++) {
             if ($(options[i]).attr('disabled') != 'disabled') {
-                options[i].selected = true;
-                break;
+            	if (isPython && nEnabled > 1) {
+            		isPython = false;
+            	} else {
+		        options[i].selected = true;
+		        break;
+                }
             }
         }
     }

@@ -23,7 +23,7 @@ class Scratch(Language):
 
     @property
     def time_multiplier(self):
-        return 100
+        return 10
 
     def get_compilation_commands(self,
                                  source_filenames, executable_filename,
