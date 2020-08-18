@@ -524,6 +524,11 @@ class EvaluationJob(Job):
 
         info = "evaluate submission %d on testcase %s" % \
             (submission.id, testcase.codename)
+        
+        if dataset.time_limit:
+            time_limit = dataset.time_limit * (language.time_multiplier if language is not None else 1)
+        else:
+            time_limit = dataset.time_limit
 
         # dict() is required to detach the dictionary that gets added
         # to the Job from the control of SQLAlchemy
@@ -538,7 +543,7 @@ class EvaluationJob(Job):
             executables=dict(submission_result.executables),
             input=testcase.input,
             output=testcase.output,
-            time_limit=dataset.time_limit*(language.time_multiplier if language is not None else 1),
+            time_limit=time_limit,
             memory_limit=dataset.memory_limit,
             info=info
         )
