@@ -129,7 +129,7 @@ class PasswordHandler(ContestHandler):
         except smtplib.SMTPException as e:
            logger.error('Unable to send email:', e)
 
-        with open('/home/cmsuser/logs/pwd_reset_requests', 'a') as f:
+        with open('/home/ubuntu/logs/pwd_reset_requests', 'a') as f:
             time = datetime.datetime.now().strftime('%y-%m-%d %H:%M')
             f.write('{} {} {}\n'.format(username, email, time))
 
