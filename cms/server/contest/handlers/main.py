@@ -33,6 +33,7 @@ import logging
 import re
 import datetime
 import smtplib
+import os
 
 import tornado.web
 from sqlalchemy.orm.exc import NoResultFound
@@ -110,6 +111,10 @@ class PasswordHandler(ContestHandler):
             # HTTP 409: Conflict
             raise tornado.web.HTTPError(409)
 
+        if not hasattr(config, "saco_admin_email_password"):
+            logger.error("'saco_admin_email_password' not defined in cms.conf - can't email new password")
+            return
+
         pwd = generate_random_password()
 
         self.sql_session.query(User)\
@@ -122,16 +127,21 @@ class PasswordHandler(ContestHandler):
         receivers = [email]
         message = password_reset_email_format.format(sender, email, pwd)
 
+        result = 'successful'
         try:
            s = smtplib.SMTP('smtp.saco-evaluator.org.za', 587)
-           s.login('admin@saco-evaluator.org.za', '451MainRoad')
+           s.login('admin@saco-evaluator.org.za', config.saco_admin_email_password)
            s.sendmail(sender, receivers + [sender], message)
         except smtplib.SMTPException as e:
            logger.error('Unable to send email:', e)
+           result = 'unsuccessful'
 
-        with open('/home/ubuntu/logs/pwd_reset_requests', 'a') as f:
-            time = datetime.datetime.now().strftime('%y-%m-%d %H:%M')
-            f.write('{} {} {}\n'.format(username, email, time))
+        if hasattr(config, 'test_logs_dir'):
+            with open(os.path.join(config.test_logs_dir, 'pwd_reset_requests'), 'a') as f:
+                time = datetime.datetime.now().strftime('%y-%m-%d %H:%M')
+                f.write('{} {} {} {}\n'.format(username, email, time, result))
+        else:
+            logger.error("test_logs_dir undefined in cms.conf, can't write logs")
 
     @multi_contest
     def get(self):
