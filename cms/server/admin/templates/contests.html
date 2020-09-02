@@ -25,7 +25,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for c in contest_list %}
+      {% for c in contest_list|sort(attribute='name', reverse=True) %}
       <tr>
         <td>
           <input type="radio" name="contest_id" value="{{ c.id }}"/>
