@@ -231,10 +231,10 @@ def main():
                     try:
                         data = utf8_decoder(data)
                     except TypeError:
-                        logger.critical("Could not guess encoding of file "
-                                        "'%s'. Aborting.",
+                        logger.warning("Could not guess encoding of file "
+                                        "'%s'. Skipping.",
                                         filename)
-                        sys.exit(1)
+                        continue
 
                     if args.add_info:
                         data = TEMPLATE[ext] % (

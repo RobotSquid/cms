@@ -32,6 +32,8 @@ import json
 import logging
 import re
 import datetime
+import smtplib
+import os
 
 import tornado.web
 from sqlalchemy.orm.exc import NoResultFound
@@ -44,7 +46,7 @@ from cms.server.contest.authentication import validate_login
 from cms.server.contest.communication import get_communications
 from cms.server.contest.printing import accept_print_job, PrintingDisabled, \
     UnacceptablePrintJob
-from cmscommon.crypto import hash_password
+from cmscommon.crypto import hash_password, generate_random_password, build_password
 from cmscommon.datetime import make_datetime, make_timestamp
 from .contest import ContestHandler
 from ..phase_management import actual_phase_required
@@ -52,6 +54,19 @@ from ..phase_management import actual_phase_required
 
 logger = logging.getLogger(__name__)
 
+password_reset_email_format = """From: SACO Admin <{}>
+To: <{}>
+Subject: SACO Evaluator Password Reset
+
+Dear SACO Evaluator User
+
+We received a password reset request for your account.
+
+Your new password is: {}
+
+Best,
+The SACO Evaluator Team
+"""
 
 # Dummy function to mark translatable strings.
 def N_(msgid):
@@ -89,20 +104,44 @@ class PasswordHandler(ContestHandler):
               
         # Check that the username exists
         tot_users = self.sql_session.query(User)\
-                        .filter(User.username == username).count()
+                        .filter(User.username == username)\
+                        .filter(User.email == email)\
+                        .count()
         if tot_users == 0:
             # HTTP 409: Conflict
             raise tornado.web.HTTPError(409)
 
-        # Make log to reset password
-        if (email != None) and (len(email) > 0):
-            f = open('/home/ubuntu/logs/TODO_logs', 'a')
-            l = str(datetime.datetime.now())
-            l += " ADD PASSWORD RESET REQUEST "
-            l += " Username: " +  username
-            l += " Email: " + email
-            f.write(l+'\n')
-            f.close()
+        if not hasattr(config, "saco_admin_email_password"):
+            logger.error("'saco_admin_email_password' not defined in cms.conf - can't email new password")
+            return
+
+        pwd = generate_random_password()
+
+        self.sql_session.query(User)\
+                        .filter(User.username == username)\
+                        .filter(User.email == email)\
+                        .update({'password': build_password(pwd)})
+        self.sql_session.commit()
+
+        sender = 'admin@saco-evaluator.org.za'
+        receivers = [email]
+        message = password_reset_email_format.format(sender, email, pwd)
+
+        result = 'successful'
+        try:
+           s = smtplib.SMTP('smtp.saco-evaluator.org.za', 587)
+           s.login('admin@saco-evaluator.org.za', config.saco_admin_email_password)
+           s.sendmail(sender, receivers + [sender], message)
+        except smtplib.SMTPException as e:
+           logger.error('Unable to send email:', e)
+           result = 'unsuccessful'
+
+        if hasattr(config, 'test_logs_dir'):
+            with open(os.path.join(config.test_logs_dir, 'pwd_reset_requests'), 'a') as f:
+                time = datetime.datetime.now().strftime('%y-%m-%d %H:%M')
+                f.write('{} {} {} {}\n'.format(username, email, time, result))
+        else:
+            logger.error("test_logs_dir undefined in cms.conf, can't write logs")
 
     @multi_contest
     def get(self):
