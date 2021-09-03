@@ -29,7 +29,7 @@
         <p>
         {% trans start_time=(contest.start + participation.delay_time)|format_datetime_smart,
                  stop_time=(contest.stop + participation.delay_time + participation.extra_time)|format_datetime_smart %}
-          The contest started at {{ start_time }} and will end at {{ stop_time }}.
+          Your window for this contest starts at {{ start_time }} and ends at {{ stop_time }}.
         {% endtrans %}
 {% elif phase >= +1 %}
         {% trans %}The contest has already ended.{% endtrans %}
