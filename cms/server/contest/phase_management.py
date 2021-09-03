@@ -92,7 +92,7 @@ def compute_actual_phase(timestamp, contest_start, contest_stop,
     assert extra_time >= timedelta()
 
     contest_start += delay_time
-    contest_end += delay_time
+    contest_stop += delay_time
 
     if per_user_time is not None and starting_time is None:
         # "USACO-like" contest, but we still don't know when the user
