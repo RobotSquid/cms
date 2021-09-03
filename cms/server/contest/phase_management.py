@@ -91,6 +91,9 @@ def compute_actual_phase(timestamp, contest_start, contest_stop,
     assert delay_time >= timedelta()
     assert extra_time >= timedelta()
 
+    contest_start += delay_time
+    contest_end += delay_time
+
     if per_user_time is not None and starting_time is None:
         # "USACO-like" contest, but we still don't know when the user
         # started/will start.
@@ -124,11 +127,11 @@ def compute_actual_phase(timestamp, contest_start, contest_stop,
             # ridiculous situations of starting_time being set by the
             # admin way before contest_start or after contest_stop.
             intended_start = min(max(starting_time,
-                                     contest_start), contest_stop + delay_time + extra_time)
+                                     contest_start), contest_stop)
             intended_stop = min(max(starting_time + per_user_time,
-                                    contest_start), contest_stop + delay_time + extra_time)
-        actual_start = intended_start + delay_time
-        actual_stop = intended_stop + delay_time + extra_time
+                                    contest_start), contest_stop)
+        actual_start = intended_start
+        actual_stop = intended_stop + extra_time
 
         assert contest_start <= actual_start <= actual_stop
 
