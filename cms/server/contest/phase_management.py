@@ -124,9 +124,9 @@ def compute_actual_phase(timestamp, contest_start, contest_stop,
             # ridiculous situations of starting_time being set by the
             # admin way before contest_start or after contest_stop.
             intended_start = min(max(starting_time,
-                                     contest_start), contest_stop)
+                                     contest_start), contest_stop + delay_time + extra_time)
             intended_stop = min(max(starting_time + per_user_time,
-                                    contest_start), contest_stop)
+                                    contest_start), contest_stop + delay_time + extra_time)
         actual_start = intended_start + delay_time
         actual_stop = intended_stop + delay_time + extra_time
 
