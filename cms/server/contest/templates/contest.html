@@ -189,6 +189,12 @@ $(document).ready(function () {
                                 <a href="{{ contest_url("instructions") }}">{% trans %}Rules & Instructions{% endtrans %}</a>
                             </li>
         {% endif %}
+	{% if contest.name == "sapo2022r2" %}
+                            <li{% if page == "instructions" %} class="active"{% endif %}>
+                                <a href="{{ contest_url("instructions") }}">{% trans %}Rules & Instructions{% endtrans %}</a>
+                            </li>
+        {% endif %}
+
                             <li{% if page == "communication" %} class="active"{% endif %}>
                                 <a href="{{ contest_url("communication") }}">{% trans %}Communication{% endtrans %}
                                     <span id="unread_count" class="label label-warning no_unread"></span>
@@ -234,12 +240,11 @@ $(document).ready(function () {
                     Sponsored by
                     <table>
                         <tr>
-                        <td style="width:50%; text-align:center; padding:15px"><img src="/sponsors/oracle.jpg" alt="Oracle Academy"></td>
-                        <td colspan="2" style="width:50%; text-align:center; padding:15px"><img src="/sponsors/iitpsa.jpg" alt="IITPSA"></td>
+                        <td style="height:40px; text-align:center; padding:15px"><img src="/sponsors/iitpsa.jpg" alt="IITPSA"></td>
                         </tr>
-                        <td colspan="2" style="width:70%; text-align:left; padding:15px"><img src="/sponsors/standardbank.jpg" alt="Standard Bank">&emsp;&emsp;</td>
-                        <td style="width:30%; text-align:center; padding:15px"><img src="/sponsors/uct.jpg" alt="UCT"></td>
+                        <td style="height:25px; text-align:center; padding:15px"><img src="/sponsors/uct.jpg" alt="UCT"></td>
                         <tr>
+			<td style="height:40px; text-align:center; padding:15px"><img src="/sponsors/ISPA High Res.png" alt='ISPA'></td>
                         </tr>
                     </table>
                     </span>                    
