@@ -184,12 +184,7 @@ $(document).ready(function () {
                             <li{% if page == "overview" %} class="active"{% endif %}>
                                 <a href="{{ contest_url() }}">{% trans %}Overview{% endtrans %}</a>
                             </li>
-        {% if contest.name == "sapo2020round2" %}
-                            <li{% if page == "instructions" %} class="active"{% endif %}>
-                                <a href="{{ contest_url("instructions") }}">{% trans %}Rules & Instructions{% endtrans %}</a>
-                            </li>
-        {% endif %}
-	{% if contest.name == "sapo2022r2" %}
+       	{% if contest.name == "sapo2023r2" %}
                             <li{% if page == "instructions" %} class="active"{% endif %}>
                                 <a href="{{ contest_url("instructions") }}">{% trans %}Rules & Instructions{% endtrans %}</a>
                             </li>
@@ -244,7 +239,7 @@ $(document).ready(function () {
                         </tr>
                         <td style="height:25px; text-align:center; padding:15px"><img src="/sponsors/uct.jpg" alt="UCT"></td>
                         <tr>
-			<td style="height:40px; text-align:center; padding:15px"><img src="/sponsors/ISPA High Res.png" alt='ISPA'></td>
+                        <td style="height:25px; text-align:center; padding:15px"><img src="/sponsors/jane-street-logo.png" alt="Jane Street"></td>
                         </tr>
                     </table>
                     </span>                    

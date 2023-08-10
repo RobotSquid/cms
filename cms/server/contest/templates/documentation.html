@@ -31,8 +31,6 @@
 {% if contest.languages|map("to_language")|map(attribute="source_extensions")|any("contains", ".py") %}
 <h3>Python</h3>
 
-<p><a href="/docs/python-docs-2.7/">{% trans %}Python 2 Documentation{% endtrans %}</a></p>
-
 <p><a href="/docs/python-docs-3.7/">{% trans %}Python 3 Documentation{% endtrans %}</a></p>
 {% endif %}
 

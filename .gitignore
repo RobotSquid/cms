@@ -11,3 +11,5 @@ cms.egg-info
 cache/
 lib/
 log/
+config/cms.conf.template
+config/cms.conf.tmp
