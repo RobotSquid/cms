@@ -41,6 +41,10 @@ class PascalFpc(CompiledLanguage):
         return [".pas"]
 
     @property
+    def time_multiplier(self):
+        return 5
+
+    @property
     def header_extensions(self):
         """See Language.source_extensions."""
         return ["lib.pas"]
