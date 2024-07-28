@@ -489,9 +489,12 @@ class EvaluationService(TriggeredService):
                                      "in the database.", object_id)
                         continue
                     object_result = object_.get_result_or_create(dataset)
-
-                self.write_results_one_object_and_type(
-                    session, object_result, operation_results)
+                
+                try:
+                    self.write_results_one_object_and_type(
+                        session, object_result, operation_results)
+                except: Exception as e:
+                    logger.error(str(e))
 
             logger.info("Committing evaluations...")
             session.commit()
