@@ -38,7 +38,7 @@ class PascalFpc(CompiledLanguage):
     @property
     def source_extensions(self):
         """See Language.source_extensions."""
-        return [".pas"]
+        return [".pas", ".dpr"]
 
     @property
     def time_multiplier(self):
